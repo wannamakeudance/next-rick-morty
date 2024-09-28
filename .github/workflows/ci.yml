@@ -12,20 +12,20 @@ jobs:
     runs-on: ubuntu-latest
 
     # Strategy can be used for matrix builds (optional)
-    # strategy:
-    #   matrix:
-    #     node-version: [14.x, 16.x, 18.x]
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
       # Step 1: Checkout the repository
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Step 2: Setup Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: ${{ matrix.node-version }}
           cache: "npm"
 
       # Step 3: Install Dependencies

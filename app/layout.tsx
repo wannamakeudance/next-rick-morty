@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           >
             <Link href="/info">
               <Heading size="lg" cursor="pointer">
-                My Application
+                Rick and Morty Company
               </Heading>
             </Link>
 

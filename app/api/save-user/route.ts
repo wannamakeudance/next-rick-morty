@@ -3,14 +3,12 @@ import type { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    // Check the Content-Type of the incoming request
-    const contentType = request.headers.get("content-type") || "";
+    const contentType = request.headers.get("content-type") ?? "";
 
     let username = "";
     let jobTitle = "";
 
     if (contentType.includes("application/json")) {
-      // If JSON, parse the body using `request.json()`
       const body = await request.json();
       username = body.username;
       jobTitle = body.jobTitle;
@@ -27,7 +25,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if username and jobTitle are provided
     if (!username || !jobTitle) {
       return NextResponse.json(
         { message: "Invalid data. Username and Job Title are required." },
@@ -37,7 +34,6 @@ export async function POST(request: NextRequest) {
 
     console.log("User data received:", { username, jobTitle });
 
-    // Create a new response and set the cookies
     const { protocol, host } = request.nextUrl;
     const redirectUrl = `${protocol}//${host}/info`;
     const response = NextResponse.redirect(redirectUrl);
@@ -48,7 +44,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error handling POST request:", error);
 
-    // Return a 500 response with the error message
     return NextResponse.json(
       { message: "Internal Server Error", error: JSON.stringify(error) },
       { status: 500 }

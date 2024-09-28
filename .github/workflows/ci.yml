@@ -1,0 +1,37 @@
+name: CI
+
+# Trigger the workflow on push and pull request events
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # Strategy can be used for matrix builds (optional)
+    # strategy:
+    #   matrix:
+    #     node-version: [14.x, 16.x, 18.x]
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "yarn"
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        run: yarn install
+
+      # Step 4: Run Unit Tests
+      - name: Run Unit Tests
+        run: yarn test

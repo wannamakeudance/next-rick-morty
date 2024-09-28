@@ -186,7 +186,3 @@ This project is optimized for Vercel. Follow these steps to deploy:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Let me know if you'd like to add or change anything in the `README.md`!

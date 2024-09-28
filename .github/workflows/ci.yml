@@ -26,12 +26,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-          cache: "yarn"
+          cache: "npm"
 
       # Step 3: Install Dependencies
       - name: Install Dependencies
-        run: yarn install
+        run: npm install
 
       # Step 4: Run Unit Tests
       - name: Run Unit Tests
-        run: yarn test
+        run: npm test

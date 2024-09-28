@@ -14,7 +14,7 @@ jobs:
     # Strategy can be used for matrix builds (optional)
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x]
 
     steps:
       # Step 1: Checkout the repository

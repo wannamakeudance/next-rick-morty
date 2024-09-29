@@ -169,7 +169,7 @@ next-rick-morty/
 
 ### Vercel Deployment
 
-This project has been deployed to `https://next-rick-morty-red.vercel.app/`
+This project has been deployed to [https://next-rick-morty-red.vercel.app/](https://next-rick-morty-red.vercel.app/)
 
 If you want to deploy to your own vercel, pleaase follow these steps to deploy:
 

@@ -90,6 +90,10 @@ export default function HomePage() {
               value: 3,
               message: "Username must be at least 3 characters long",
             },
+            maxLength: {
+              value: 10,
+              message: "Username must not exceed 10 characters",
+            },
           })}
         />
         <FormErrorMessage>
@@ -105,6 +109,10 @@ export default function HomePage() {
             minLength: {
               value: 2,
               message: "Job Title must be at least 2 characters long",
+            },
+            maxLength: {
+              value: 20,
+              message: "Job Title must not exceed 20 characters",
             },
           })}
         />

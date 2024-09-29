@@ -1,6 +1,7 @@
 import { Box, ChakraProvider, Flex, Heading, Text } from "@chakra-ui/react";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import Image from "next/image";
 import { ReactNode } from "react";
 import EditProfileModal from "./components/EditProfileModal";
 
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ChakraProvider>
           <Flex
             position={"fixed"}
-            width={"100vw"}
+            width={"100%"}
             justify="space-between"
             align="center"
             padding="1rem 2.6rem"
@@ -23,12 +24,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             color="white"
             as="header"
           >
-            <Link href="/info">
+            <Link
+              href="/info"
+              style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+            >
+              <Image
+                src="/logo.jpg"
+                alt="Rick and Morty Logo"
+                width={50}
+                height={50}
+                quality={70}
+              />
               <Heading
-                width="60vw"
-                size={{ base: "md", md: "lg" }}
+                size={{ base: "sm", md: "lg" }}
                 cursor="pointer"
                 color={"yellow.400"}
+                width={"40vw"}
               >
                 Rick and Morty Company
               </Heading>

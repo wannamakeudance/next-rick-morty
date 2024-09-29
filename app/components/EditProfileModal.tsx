@@ -13,6 +13,7 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 
 export default function EditProfileModal({
@@ -45,9 +46,27 @@ export default function EditProfileModal({
 
   return (
     <>
-      <Button size="sm" colorScheme="yellow" onClick={() => setIsOpen(true)}>
+      <Button
+        display={{
+          base: "none",
+          md: "inline-flex",
+        }}
+        size="sm"
+        colorScheme="yellow"
+        onClick={() => setIsOpen(true)}
+      >
         Edit Profile
       </Button>
+      <EditIcon
+        display={{
+          base: "inline-flex",
+          md: "none",
+        }}
+        fontSize={24}
+        color={"yellow.400"}
+        style={{ cursor: "pointer" }}
+        onClick={() => setIsOpen(true)}
+      />
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />

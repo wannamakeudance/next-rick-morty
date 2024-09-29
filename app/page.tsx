@@ -1,6 +1,71 @@
-import { Heading, Input, Text, VStack, Button } from "@chakra-ui/react";
+"use client";
+
+import { useState } from "react";
+import {
+  Heading,
+  Input,
+  Text,
+  VStack,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  useToast,
+} from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+
+interface FormValues {
+  username: string;
+  jobTitle: string;
+}
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormValues>();
+
+  const onSubmit = async (data: FormValues) => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/save-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        toast({
+          title: "Submission Failed",
+          description: `Error: ${errorData.message}`,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        setLoading(false);
+        return;
+      }
+      reset();
+      location.href = "/info";
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again later.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <VStack
       sx={{
@@ -11,14 +76,49 @@ export default function HomePage() {
       spacing={4}
       justify="center"
       as="form"
-      method="POST"
-      action="/api/save-user"
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Heading>Welcome!</Heading>
       <Text fontSize="lg">Please enter your username and job title:</Text>
-      <Input placeholder="Username" name="username" required defaultValue="" />
-      <Input placeholder="Job Title" name="jobTitle" required defaultValue="" />
-      <Button type="submit" size="lg" colorScheme="yellow">
+
+      <FormControl isInvalid={!!errors.username}>
+        <Input
+          placeholder="Username"
+          {...register("username", {
+            required: "Username is required", // Custom error message
+            minLength: {
+              value: 3,
+              message: "Username must be at least 3 characters long",
+            },
+          })}
+        />
+        <FormErrorMessage>
+          {errors.username && errors.username.message}
+        </FormErrorMessage>
+      </FormControl>
+
+      <FormControl isInvalid={!!errors.jobTitle}>
+        <Input
+          placeholder="Job Title"
+          {...register("jobTitle", {
+            required: "Job Title is required",
+            minLength: {
+              value: 2,
+              message: "Job Title must be at least 2 characters long",
+            },
+          })}
+        />
+        <FormErrorMessage>
+          {errors.jobTitle && errors.jobTitle.message}
+        </FormErrorMessage>
+      </FormControl>
+
+      <Button
+        type="submit"
+        size="lg"
+        colorScheme="yellow"
+        isLoading={isSubmitting || loading}
+      >
         Save and Continue
       </Button>
     </VStack>

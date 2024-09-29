@@ -152,6 +152,10 @@ To run the tests, use:
 yarn test
 ```
 
+### Integrated into CI pipeline
+
+The process of testing has been integrated into pipeline which would run when every push into master.
+
 ### Sample Test File Structure
 
 ```plaintext

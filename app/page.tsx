@@ -66,8 +66,8 @@ export default function HomePage() {
         height: "100vh",
         width: "70vw",
         margin: "0 auto",
+        overflow: "hidden",
       }}
-      spacing={4}
       justify="center"
     >
       <Image
@@ -87,7 +87,7 @@ export default function HomePage() {
         quality={60}
       />
       <Heading>Welcome!</Heading>
-      <Text fontSize={{ base: "md", md: "lg" }} fontWeight={700}>
+      <Text fontSize={{ base: "sm", md: "md", lg: "lg" }} fontWeight={700}>
         Please enter your username and job title:
       </Text>
       <UserForm

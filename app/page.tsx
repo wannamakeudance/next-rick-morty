@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { VStack, Heading, Text, useToast } from "@chakra-ui/react";
+import { Heading, Text, useToast, VStack } from "@chakra-ui/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import UserForm from "./components/UserForm";
 
 export default function HomePage() {
@@ -63,14 +64,32 @@ export default function HomePage() {
     <VStack
       sx={{
         height: "100vh",
-        width: "80vw",
+        width: "70vw",
         margin: "0 auto",
       }}
       spacing={4}
       justify="center"
     >
+      <Image
+        style={{
+          height: "100%",
+          width: "100%",
+          top: "3.2rem",
+          position: "fixed",
+          zIndex: -1,
+          objectFit: "cover",
+          opacity: 0.2,
+        }}
+        src="/bg.jpg"
+        alt="Logo"
+        width={200}
+        height={200}
+        quality={60}
+      />
       <Heading>Welcome!</Heading>
-      <Text fontSize="lg">Please enter your username and job title:</Text>
+      <Text fontSize="lg" fontWeight={700}>
+        Please enter your username and job title:
+      </Text>
       <UserForm
         defaultValues={{ username: "", jobTitle: "" }}
         onSubmit={handleFormSubmit}

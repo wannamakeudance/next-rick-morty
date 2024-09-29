@@ -1,11 +1,11 @@
-import React from "react";
 import {
-  VStack,
   Button,
-  Input,
   FormControl,
   FormErrorMessage,
+  Input,
+  VStack,
 } from "@chakra-ui/react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 interface UserFormProps {
@@ -42,6 +42,9 @@ export default function UserForm({
       <VStack spacing={4}>
         <FormControl isInvalid={!!errors.username}>
           <Input
+            background={"#201f1f"}
+            color={"#fff"}
+            height={14}
             placeholder="Username"
             {...register("username", {
               required: "Username is required",
@@ -62,6 +65,9 @@ export default function UserForm({
 
         <FormControl isInvalid={!!errors.jobTitle}>
           <Input
+            background={"#201f1f"}
+            color={"#fff"}
+            height={14}
             placeholder="Job Title"
             {...register("jobTitle", {
               required: "Job Title is required",

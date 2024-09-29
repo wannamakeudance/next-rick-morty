@@ -1,20 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { ArrowForwardIcon, EditIcon } from "@chakra-ui/icons";
 import {
+  Button,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
-  VStack,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Tooltip,
+  VStack,
 } from "@chakra-ui/react";
-import { EditIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import UserForm from "./UserForm";
 
 export default function EditProfileModal({
@@ -86,7 +86,7 @@ export default function EditProfileModal({
           md: "inline-flex",
         }}
         size="sm"
-        colorScheme="grey"
+        colorScheme="yellow"
         onClick={handleLogout}
       >
         Logout

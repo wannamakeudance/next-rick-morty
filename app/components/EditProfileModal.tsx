@@ -28,7 +28,6 @@ export default function EditProfileModal({
   const router = useRouter();
 
   const handleSave = async () => {
-    // Save the updated username and job title
     await fetch("/api/save-user", {
       method: "POST",
       body: JSON.stringify({
@@ -40,19 +39,16 @@ export default function EditProfileModal({
       },
     });
 
-    // Close the modal and refresh the page to see the updates
     setIsOpen(false);
     router.refresh(); // Trigger a re-render to show the updated user information
   };
 
   return (
     <>
-      {/* Trigger Button to Open Modal */}
       <Button size="sm" colorScheme="yellow" onClick={() => setIsOpen(true)}>
         Edit Profile
       </Button>
 
-      {/* Chakra UI Modal for Editing User Profile */}
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />
         <ModalContent>
@@ -60,14 +56,12 @@ export default function EditProfileModal({
           <ModalCloseButton />
           <ModalBody>
             <VStack spacing={4}>
-              {/* Username Input Field */}
               <Input
                 placeholder="Username"
                 value={newUsername}
                 onChange={(e) => setNewUsername(e.target.value)}
               />
 
-              {/* Job Title Input Field */}
               <Input
                 placeholder="Job Title"
                 value={newJobTitle}
@@ -76,8 +70,7 @@ export default function EditProfileModal({
             </VStack>
           </ModalBody>
           <ModalFooter>
-            {/* Save Changes Button */}
-            <Button colorScheme="blue" mr={3} onClick={handleSave}>
+            <Button colorScheme="yellow" mr={3} onClick={handleSave}>
               Save Changes
             </Button>
             <Button variant="ghost" onClick={() => setIsOpen(false)}>

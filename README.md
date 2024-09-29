@@ -30,15 +30,12 @@ next-rick-morty/
 │   │   └── [id]/
 │   │       └── page.tsx         # Dynamic route for character details
 ├── components/
-│   ├── EditProfileModal.tsx     # Modal component for editing user profile
-│   └── Header.tsx               # Header component with user info display
+│   ├── EditProfileModal.tsx     # Modal component for editing user
 ├── lib/
 │   └── apolloClient.ts          # Apollo Client setup
 ├── middleware.ts                # Next.js middleware for custom redirection
-├── public/
-│   └── favicon.ico              # Favicon for the project
-├── styles/
-│   └── globals.css              # Global CSS styles
+│───favicon.ico                  # Favicon for the project
+│───globals.css                  # Global CSS styles
 ├── README.md                    # Project documentation
 ├── next.config.js               # Next.js configuration
 ├── tsconfig.json                # TypeScript configuration
@@ -161,14 +158,16 @@ yarn test
 next-rick-morty/
 ├── components/
 │   └── __tests__/
-│       └── Header.test.tsx      # Test file for Header component
+│       └── EditProfileModal.test.tsx      # Test file for EditProfileModal component
 ```
 
 ## Deployment
 
 ### Vercel Deployment
 
-This project is optimized for Vercel. Follow these steps to deploy:
+This project has been deployed to `https://next-rick-morty-red.vercel.app/`
+
+If you want to deploy to your own vercel, pleaase follow these steps to deploy:
 
 1. Log in to your [Vercel account](https://vercel.com/).
 2. Import the project from your GitHub repository.

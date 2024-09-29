@@ -1,7 +1,8 @@
 import { gql } from "@apollo/client";
 import client from "../../lib/apolloClient";
-import { Button, Image, Text, VStack } from "@chakra-ui/react";
+import { Button, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Define the GraphQL query for character details
 const GET_CHARACTER = gql`
@@ -26,18 +27,28 @@ export default async function CharacterPage({
 }: {
   params: { id: string };
 }) {
-  // Use Apollo Client to fetch character details based on ID
   const { data } = await client.query({
     query: GET_CHARACTER,
     variables: { id: params.id },
   });
 
-  // Extract character details from the response
   const character = data.character;
 
   return (
-    <VStack spacing={4} justify="center" padding={8}>
-      <Image src={character.image} alt={character.name} />
+    <VStack spacing={4} justify="center" paddingTop={20}>
+      <Image
+        src={character.image}
+        alt={character.name}
+        width={300}
+        height={200}
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAkACQAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAAKAAoDAREAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAABQcICv/EACoQAAEEAAMECwAAAAAAAAAAAAIBAwQFBgcIABESMRMYITRBQlhygZbT/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAECA//EABgRAQADAQAAAAAAAAAAAAAAAAABAhEh/9oADAMBAAIRAxEAPwBm5oanr/LnUnYYczBrxuqmQDMdmHDkORbGqedlk0DzTi7h4BbESRA38aGKrzXdpFdhOrHw5eZlycPVcmXQMOPuwmDdN4ujcI1BFVSDykq808F7No4bOvP1EagLWzjXVnnnmDMsIXdpb+J5rjzPsMnVIfhdkYp1sdU/qWzV+5WP7bAf/9k="
+        style={{
+          marginTop: "2rem",
+          borderRadius: ".5rem",
+          boxShadow: "2px 3px 4px #eee",
+        }}
+      />
       <Text fontSize="2xl" fontWeight="bold">
         {character.name}
       </Text>
@@ -46,7 +57,7 @@ export default async function CharacterPage({
       <Text>Status: {character.status}</Text>
       <Text>Location: {character.location.name}</Text>
       <Link href="/info">
-        <Button colorScheme="blue" mt={4}>
+        <Button colorScheme="yellow" mt={4}>
           Back to List
         </Button>
       </Link>

@@ -1,10 +1,9 @@
-import { ReactNode } from "react";
-import { cookies } from "next/headers"; // Import headers to get URL
-import { Box, Flex, Heading, Text, ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex, Heading, Text } from "@chakra-ui/react";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { ReactNode } from "react";
 import EditProfileModal from "./components/EditProfileModal";
 
-// Root Layout Component with Path Check
 export default function RootLayout({ children }: { children: ReactNode }) {
   const cookieStore = cookies();
   const username = cookieStore.get("username")?.value || "";
@@ -14,38 +13,45 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <ChakraProvider>
-          {/* Header Bar */}
           <Flex
-            as="header"
+            position={"fixed"}
+            width={"100vw"}
             justify="space-between"
             align="center"
-            bg="blue.600"
+            padding="1rem 2.6rem"
+            bg="black"
             color="white"
-            padding="1rem 2rem"
+            as="header"
           >
             <Link href="/info">
-              <Heading size="lg" cursor="pointer">
+              <Heading
+                width="60vw"
+                size={{ base: "md", md: "lg" }}
+                cursor="pointer"
+                color={"yellow.400"}
+              >
                 Rick and Morty Company
               </Heading>
             </Link>
 
-            {/* Display Username and Job Title if available */}
             {username && jobTitle && (
               <Flex align="center" gap="1rem">
                 <Box>
-                  <Text fontSize="md">
-                    Welcome, <strong>{username}</strong>!
+                  <Text
+                    fontSize={{
+                      base: "sm",
+                      md: "md",
+                    }}
+                    fontWeight={500}
+                  >
+                    {username}
                   </Text>
                   <Text fontSize="sm">{jobTitle}</Text>
                 </Box>
-
-                {/* Edit Profile Modal */}
                 <EditProfileModal username={username} jobTitle={jobTitle} />
               </Flex>
             )}
           </Flex>
-
-          {/* Main Content */}
           <main>{children}</main>
         </ChakraProvider>
       </body>

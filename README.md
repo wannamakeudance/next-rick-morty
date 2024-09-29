@@ -52,7 +52,8 @@ next-rick-morty/
 - **GraphQL Data Fetching**: Uses Apollo Client to query a public GraphQL API.
 - **Middleware for Redirections**: Manages user authentication and page access using middleware.
 - **Responsive Design**: Created with Chakra UI, ensuring a great experience on both desktop and mobile devices.
-- **Server and Client Components**: Combines Server and Client Components for optimized rendering.
+- **Server and Client Components**: Combines Server and Client Render for optimized performance especially in information list page.
+- **Form validations**: Using a shared form components to keep the same validation logic between set up and edit profile.
 - **Custom State Management**: Stores user information (username and job title) in cookies.
 
 ## Installation
@@ -159,15 +160,6 @@ yarn test
 ### Integrated into CI pipeline
 
 The process of testing has been integrated into pipeline which would run when every push into master.
-
-### Sample Test File Structure
-
-```plaintext
-next-rick-morty/
-├── components/
-│   └── __tests__/
-│       └── EditProfileModal.test.tsx      # Test file for EditProfileModal component
-```
 
 ## Deployment
 

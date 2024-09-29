@@ -27,12 +27,11 @@ next-rick-morty/
 │   ├── page.tsx                 # Home page
 │   ├── info/
 │   │   ├── page.tsx             # Info page with paginated data
-│   │   └── [id]/
-│   │       └── page.tsx         # Dynamic route for character details
 ├── components/
 │   ├── EditProfileModal.tsx     # Modal component for editing user
 ├── lib/
 │   └── apolloClient.ts          # Apollo Client setup
+|── public/                      # Static assets
 ├── middleware.ts                # Next.js middleware for custom redirection
 │───favicon.ico                  # Favicon for the project
 │───globals.css                  # Global CSS styles

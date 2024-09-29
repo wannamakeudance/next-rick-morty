@@ -1,9 +1,9 @@
-import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import EditProfileModal from "./EditProfileModal";
 import { ChakraProvider } from "@chakra-ui/react";
+import "@testing-library/jest-dom";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useRouter } from "next/navigation";
+import React from "react";
+import EditProfileModal from "./EditProfileModal";
 
 // Mock the useRouter hook
 jest.mock("next/navigation", () => ({
@@ -84,7 +84,7 @@ describe("EditProfileModal", () => {
     expect(mockRouter.refresh).toHaveBeenCalled();
   });
 
-  it("should close the modal when the Cancel button is clicked", () => {
+  it("should close the modal when the close button is clicked", () => {
     const { getByText, queryByPlaceholderText } = render(
       <ChakraProvider>
         <EditProfileModal username="testuser" jobTitle="Developer" />
@@ -92,8 +92,7 @@ describe("EditProfileModal", () => {
     );
 
     fireEvent.click(getByText("Edit Profile"));
-    fireEvent.click(getByText("Cancel"));
-
+    fireEvent.click(screen.getByTestId("edit-profile-close-button"));
     expect(queryByPlaceholderText("Username")).not.toBeVisible();
     expect(queryByPlaceholderText("Job Title")).not.toBeVisible();
   });

@@ -1,8 +1,8 @@
-import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import CharacterGrid from "./CharacterGrid";
-import "@testing-library/jest-dom";
 import { ChakraProvider } from "@chakra-ui/react";
+import "@testing-library/jest-dom";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import React from "react";
+import CharacterGrid from "./CharacterGrid";
 
 const mockCharacters = [
   {
@@ -72,7 +72,7 @@ describe("CharacterGrid Component", () => {
     );
 
     fireEvent.click(screen.getByText("Rick Sanchez"));
-    fireEvent.click(screen.getByTestId("modal-close-button"));
+    fireEvent.click(screen.getByTestId("charactor-modal-close-button"));
 
     await waitFor(() => {
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();

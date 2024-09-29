@@ -10,11 +10,11 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  Input,
   VStack,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
+import UserForm from "./UserForm";
 
 export default function EditProfileModal({
   username,
@@ -24,24 +24,26 @@ export default function EditProfileModal({
   jobTitle: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [newUsername, setNewUsername] = useState(username);
-  const [newJobTitle, setNewJobTitle] = useState(jobTitle);
+  const [isSaving, setIsSaving] = useState(false);
   const router = useRouter();
 
-  const handleSave = async () => {
+  // Handle form submission inside the modal
+  const handleFormSubmit = async (data: {
+    username: string;
+    jobTitle: string;
+  }) => {
+    setIsSaving(true);
     await fetch("/api/save-user", {
       method: "POST",
-      body: JSON.stringify({
-        username: newUsername,
-        jobTitle: newJobTitle,
-      }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
     });
 
+    setIsSaving(false);
     setIsOpen(false);
-    router.refresh(); // Trigger a re-render to show the updated user information
+    router.refresh(); // Refresh page to show updated data
   };
 
   return (
@@ -72,30 +74,18 @@ export default function EditProfileModal({
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Edit Your Profile</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton data-testid="edit-profile-close-button" />
           <ModalBody>
             <VStack spacing={4}>
-              <Input
-                placeholder="Username"
-                value={newUsername}
-                onChange={(e) => setNewUsername(e.target.value)}
-              />
-
-              <Input
-                placeholder="Job Title"
-                value={newJobTitle}
-                onChange={(e) => setNewJobTitle(e.target.value)}
+              <UserForm
+                defaultValues={{ username, jobTitle }}
+                onSubmit={handleFormSubmit}
+                buttonText="Save Changes"
+                isLoading={isSaving}
               />
             </VStack>
           </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="yellow" mr={3} onClick={handleSave}>
-              Save Changes
-            </Button>
-            <Button variant="ghost" onClick={() => setIsOpen(false)}>
-              Cancel
-            </Button>
-          </ModalFooter>
+          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>

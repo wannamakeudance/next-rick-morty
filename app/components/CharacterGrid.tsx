@@ -118,7 +118,7 @@ export default function CharacterGrid({
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{selectedCharacter?.name}</ModalHeader>
-          <ModalCloseButton data-testid="modal-close-button" />
+          <ModalCloseButton data-testid="charactor-modal-close-button" />
           <ModalBody>
             {selectedCharacter && (
               <VStack spacing={4}>

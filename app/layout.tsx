@@ -23,6 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             bg="black"
             color="white"
             as="header"
+            gap={2}
           >
             <Link
               href="/info"

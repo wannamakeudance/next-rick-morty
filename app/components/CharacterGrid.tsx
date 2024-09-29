@@ -60,8 +60,8 @@ export default function CharacterGrid({
     <VStack spacing={4} justify="center" padding={8}>
       <Grid
         templateColumns={{
-          base: "repeat(2, 1fr)",
-          md: "repeat(3, 1fr)",
+          base: "repeat(1, 1fr)",
+          md: "repeat(2, 1fr)",
           lg: "repeat(4, 1fr)",
         }}
         gap={6}

@@ -87,7 +87,7 @@ export default function HomePage() {
         quality={60}
       />
       <Heading>Welcome!</Heading>
-      <Text fontSize="lg" fontWeight={700}>
+      <Text fontSize={{ base: "md", md: "lg" }} fontWeight={700}>
         Please enter your username and job title:
       </Text>
       <UserForm

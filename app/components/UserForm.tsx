@@ -46,6 +46,7 @@ export default function UserForm({
             color={"#fff"}
             height={14}
             placeholder="Username"
+            focusBorderColor="yellow.400"
             {...register("username", {
               required: "Username is required",
               minLength: {
@@ -69,6 +70,7 @@ export default function UserForm({
             color={"#fff"}
             height={14}
             placeholder="Job Title"
+            focusBorderColor="yellow.400"
             {...register("jobTitle", {
               required: "Job Title is required",
               minLength: {

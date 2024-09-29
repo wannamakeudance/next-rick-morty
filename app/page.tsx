@@ -74,12 +74,12 @@ export default function HomePage() {
         style={{
           height: "100%",
           width: "100%",
-          top: "3.2rem",
           position: "fixed",
           zIndex: -1,
           objectFit: "cover",
           opacity: 0.2,
         }}
+        priority
         src="/bg.jpg"
         alt="Logo"
         width={200}

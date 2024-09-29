@@ -22,6 +22,9 @@ This is a Next.js 14 project developed using TypeScript, Apollo Client, and Chak
 
 ```plaintext
 next-rick-morty/
+├──.github/
+├───├─ workflows/
+|   |   ├──ci.yml               # GitHub configuration files
 ├── app/
 │   ├── layout.tsx               # Root layout component
 │   ├── page.tsx                 # Home page
@@ -29,6 +32,8 @@ next-rick-morty/
 │   │   ├── page.tsx             # Info page with paginated data
 ├── components/
 │   ├── EditProfileModal.tsx     # Modal component for editing user
+│   ├── CharacterGrid.tsx        # Character Grid with modal
+│   ├── UserForm.tsx             # User Form component
 ├── lib/
 │   └── apolloClient.ts          # Apollo Client setup
 |── public/                      # Static assets

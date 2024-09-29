@@ -9,8 +9,16 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const router = useRouter();
+  const cookies = document.cookie;
+  const username =
+    cookies
+      .split(";")
+      .find((c) => c.includes("username="))
+      ?.split("=")[1] || "";
+  if (username) {
+    router.push("/info");
+  }
 
-  // Handle form submission
   const handleFormSubmit = async (data: {
     username: string;
     jobTitle: string;

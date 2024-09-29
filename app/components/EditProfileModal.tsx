@@ -11,8 +11,9 @@ import {
   ModalCloseButton,
   Button,
   VStack,
+  Tooltip,
 } from "@chakra-ui/react";
-import { EditIcon } from "@chakra-ui/icons";
+import { EditIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 import UserForm from "./UserForm";
 
@@ -27,7 +28,6 @@ export default function EditProfileModal({
   const [isSaving, setIsSaving] = useState(false);
   const router = useRouter();
 
-  // Handle form submission inside the modal
   const handleFormSubmit = async (data: {
     username: string;
     jobTitle: string;
@@ -43,11 +43,19 @@ export default function EditProfileModal({
 
     setIsSaving(false);
     setIsOpen(false);
-    router.refresh(); // Refresh page to show updated data
+    router.refresh();
+  };
+
+  const handleLogout = () => {
+    // clear the cookie and redirect to the login page
+    document.cookie =
+      "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.href = "/";
   };
 
   return (
     <>
+      {/* Edit profile */}
       <Button
         display={{
           base: "none",
@@ -59,16 +67,42 @@ export default function EditProfileModal({
       >
         Edit Profile
       </Button>
-      <EditIcon
+      <Tooltip label="Edit Profile">
+        <EditIcon
+          display={{
+            base: "inline-flex",
+            md: "none",
+          }}
+          fontSize={24}
+          color={"yellow.400"}
+          style={{ cursor: "pointer" }}
+          onClick={() => setIsOpen(true)}
+        />
+      </Tooltip>
+      {/* Logout */}
+      <Button
         display={{
-          base: "inline-flex",
-          md: "none",
+          base: "none",
+          md: "inline-flex",
         }}
-        fontSize={24}
-        color={"yellow.400"}
-        style={{ cursor: "pointer" }}
-        onClick={() => setIsOpen(true)}
-      />
+        size="sm"
+        colorScheme="grey"
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
+      <Tooltip label="Logout">
+        <ArrowForwardIcon
+          display={{
+            base: "inline-flex",
+            md: "none",
+          }}
+          fontSize={24}
+          color={"yellow.400"}
+          style={{ cursor: "pointer" }}
+          onClick={handleLogout}
+        />
+      </Tooltip>
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />
